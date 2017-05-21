@@ -1,0 +1,50 @@
+
+<!DOCTYPE html>
+<html lang="en" ng-app="movieApp">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <!-- bootstrap css -->
+  <link type="text/css" rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
+
+  <!-- custom styles -->
+  <!-- <link type="text/css" rel="stylesheet" href="main.css"> -->
+
+  <!-- angular -->
+  <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.4.8/angular.min.js"></script>
+
+  <!-- custom script -->
+  <script type="text/javascript" src="scripts/app.js"></script>
+
+  <title>Intro Angular</title>
+</head>
+<body ng-controller="MovieCtrl as movies" ng-style="movies.style" >
+  <div class="container">
+    <div class="row">
+      <div class="col-md-6 col-md-offset-3">
+
+        Limit {{moviesToWatch}} to :
+        <button ng-click='movies.addLimit()' /></button>
+        <div ng-repeat = "movie in movies.moviesToWatch | limitTo: movies.movieLimit">
+
+          <button ng-click ='movies.delete(movie)' class="btn btn-danger" value="delete"></button>
+          {{movie.title}} with main actor {{movie.actor}}
+
+        </div>
+        <!-- form to add new movie -->
+        <br>
+        <form ng-submit="movies.addMovie()">
+          <div class="form-group">
+            <label for="movie-title">Movie Title</label>
+            <input type="text" data-ng-model="movies.movie.title" class="form-control" placeholder="What do you want to watch?" autofocus>
+            <input type="text" ng-model="movies.movie.actor" class= "form-control" placeholder="actor here" />
+          </div>
+          <input type="submit" value="Add Movie" class="btn btn-default">
+        </form>
+
+              </div>
+            </div>
+          </div>
+</body>
+</html>
